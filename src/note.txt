@@ -1,0 +1,106 @@
+/* ไม่มี prefix = mobile first (0px ขึ้นไป) */
+sm:   /* min-width: 640px  - โทรศัพท์แนวนอน / แท็บเล็ตเล็ก */
+md:   /* min-width: 768px  - แท็บเล็ต */
+lg:   /* min-width: 1024px - แล็ปท็อป / เดสก์ท็อปเล็ก */
+xl:   /* min-width: 1280px - เดสก์ท็อป */
+2xl:  /* min-width: 1536px - เดสก์ท็อปใหญ่ */
+
+Tailwind ใช้หลัก "Mobile First" หมายความว่า:
+
+    Class ไม่มี prefix = ใช้กับหน้าจอทุกขนาด
+    Class มี prefix = ใช้เมื่อหน้าจอใหญ่กว่าขนาดที่กำหนด
+
+ตัวอย่าง
+    <div class="flex flex-col lg:flex-row">
+
+อธิบาย:
+
+    มือถือ (0-1023px): flex-col → flex-direction: column (จัดแนวตั้ง)
+    แล็ปท็อป+ (1024px+): lg:flex-row → flex-direction: row (จัดแนวนอน)
+
+- Container & Screen
+    min-h-screen          /* height: 100vh; - ความสูงขั้นต่ำเต็มหน้าจอ */
+    container mx-auto     /* max-width + margin: 0 auto; - จัดกึ่งกลางแนวนอน */
+    px-4 py-8            /* padding: 2rem 1rem; - padding ซ้าย-ขวา 1rem, บน-ล่าง 2rem */
+
+- Gap & Spacing
+    gap-8                /* gap: 2rem; - ระยะห่างระหว่าง flex items */
+    lg:gap-16            /* @media (min-width: 1024px) { gap: 4rem; } */
+    space-y-6            /* margin-top: 1.5rem; สำหรับ child elements */
+    space-y-4            /* margin-top: 1rem; สำหรับ child elements */
+
+Position - การจัดตำแหน่งองค์ประกอบ
+
+1. static (default)
+    - ตำแหน่งปกติตามลำดับใน HTML
+    - ไม่สามารถใช้ top, right, bottom, left ได้
+    
+    ตัวอย่าง:
+    <div class="static">
+        กล่องนี้อยู่ในตำแหน่งปกติ
+    </div>
+
+2. relative
+    - จัดตำแหน่งสัมพันธ์กับตำแหน่งเดิมของมันเอง
+    - สามารถใช้ top, right, bottom, left ได้
+    
+    ตัวอย่าง:
+    <div class="relative top-4 left-8">
+        เลื่อนจากตำแหน่งเดิม: ลง 4 หน่วย, ขวา 8 หน่วย
+    </div>
+    
+    ภาพจำ:
+    [ตำแหน่งเดิม] → [ตำแหน่งใหม่ที่เลื่อนมา]
+                        ↘ relative
+
+3. absolute
+    - จัดตำแหน่งสัมพันธ์กับ parent ที่มี position: relative/absolute
+    - ถ้าไม่มี parent จะอ้างอิงกับ <body>
+    - ไม่เกี่ยวข้องกับ element อื่นๆ
+    
+    ตัวอย่าง:
+    <div class="relative">  <!-- parent -->
+        <div class="absolute top-0 right-0">
+            กล่องนี้จะไปอยู่มุมบนขวาของ parent
+        </div>
+    </div>
+    
+    ภาพจำ:
+    ┌─────────────────┐ ← parent (relative)
+    │                 │
+    │             [●] │ ← absolute อยู่มุมบนขวา
+    │                 │
+    └─────────────────┘
+
+4. fixed
+    - จัดตำแหน่งสัมพันธ์กับหน้าต่างเบราว์เซอร์
+    - ไม่เลื่อนตามการ scroll
+    
+    ตัวอย่าง:
+    <div class="fixed top-0 left-0 w-full">
+        Navigation bar ติดด้านบน
+    </div>
+    
+    ภาพจำ:
+    📱 เบราว์เซอร์
+    ┌─────────────────┐
+    │ [Navigation]    │ ← fixed ติดบนเสมอ
+    ├─────────────────┤
+    │ content         │
+    │ scroll ได้       │
+    │                 │
+    └─────────────────┘
+
+5. sticky
+    - ผสมระหว่าง relative และ fixed
+    - ปกติทำตัวเป็น relative แต่เมื่อ scroll ถึงจุดที่กำหนดจะกลายเป็น fixed
+    
+    ตัวอย่าง:
+    <div class="sticky top-0">
+        Header ที่จะติดด้านบนเมื่อ scroll
+    </div>
+
+- max-w-6xl
+    <div class="max-w-6xl">  
+    <!-- กว้างสูงสุด 1152px แม้หน้าจอจะกว้าง 1920px -->
+    </div>

@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* .left-content {
+  @apply dark:bg-gray-900;
+} */
+/* * {
+  @apply dark:bg-gray-900;
+} */
+
+.download {
+  @apply dark:bg-blue-600 dark:hover:bg-blue-700 dark:text-white;
+}
+
+.nav-line {
+  @apply mr-4 h-0.5 transition-all motion-reduce:transition-none;
+}
+
+.nav-line-active {
+  @apply w-12 bg-blue-600 dark:bg-blue-400;
+}
+
+.nav-line-inactive {
+  @apply w-8 bg-slate-600 dark:bg-slate-400;
+}
+
+.nav-text-active {
+  @apply text-blue-600 dark:text-blue-400;
+}
+
+.nav-text-inactive {
+  @apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200;
+}
+
+.project {
+  @apply dark:bg-blue-100 dark:text-gray-500;
+}
+
+.vue {
+  @apply dark:bg-blue-200;
+}
+
+.css {
+  @apply dark:bg-teal-100;
+}
+
+.vite {
+  @apply dark:bg-yellow-100;
+}
