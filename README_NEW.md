@@ -101,12 +101,38 @@ Automatic theme detection with manual toggle:
 
 ## 🚀 Deployment
 
-### Vercel
+### GitHub Pages (Automatic with GitHub Actions)
+This project is configured for automatic deployment to GitHub Pages:
+
+1. **Push to GitHub**:
+   ```bash
+   git add .
+   git commit -m "Add deployment workflow"
+   git push origin main
+   ```
+
+2. **Enable GitHub Pages**:
+   - Go to your repository settings
+   - Navigate to "Pages" section
+   - Source: "GitHub Actions"
+   - The workflow will automatically deploy your site
+
+3. **Your site will be available at**: `https://yourusername.github.io/resume`
+
+The deployment workflow (`.github/workflows/deploy.yml`) automatically:
+- Installs dependencies
+- Builds the project
+- Deploys to GitHub Pages
+- Runs on every push to `main` branch
+
+### Alternative Deployments
+
+#### Vercel
 1. Push to GitHub
 2. Connect repository to Vercel
 3. Deploy automatically
 
-### Netlify
+#### Netlify
 1. Push to GitHub
 2. Connect repository to Netlify
 3. Build command: `npm run build`
